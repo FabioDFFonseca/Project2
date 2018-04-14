@@ -5,17 +5,17 @@ public class Cliente {
 
 	private static int idCliente = 0;
 	private String nomeCliente;
-	private char tipoConta;
-	private ArrayList<Double> saldoInicial = new ArrayList<>();
+	private String tipoConta;
+	private ArrayList<String> saldoInicial = new ArrayList<>();
 	
-	public Cliente(String nome, char tipo, Double saldoInicial) {
+	public Cliente(String nome, String tipo, String saldoInicial) {
 		idCliente++;
 		this.nomeCliente=nome;
 		this.tipoConta=tipo;
 		this.saldoInicial.add(saldoInicial);
 	}
 			
-	private String getNomeCliente() {
+	public String getNomeCliente() {
 		return nomeCliente;
 	}
 
@@ -23,36 +23,36 @@ public class Cliente {
 		this.nomeCliente = nomeCliente;
 	}
 
-	private char getTipoConta() {
+	public String getTipoConta() {	
 		return tipoConta;
 	}
 
-	private void setTipoConta(char tipoConta) {
+	private void setTipoConta(String tipoConta) {
 		this.tipoConta = tipoConta;
 	}
 
-
-	private ArrayList<Double> getSaldoInicial() {
+	public ArrayList<String> getSaldoInicial() {
 		return saldoInicial;
 	}
 
-	private void setSaldoInicial(ArrayList<Double> saldoInicial) {
+	private void setSaldoInicial(ArrayList<String> saldoInicial) {
 		this.saldoInicial = saldoInicial;
 	}
 
-	public void displayClient() {
+	public void displayClient(String cliente) {
 
-		System.out.println("a new client named " + nomeCliente + " with id number " + idCliente + "  openned a  "
-				+ tipoConta + " type account and has a deposit of " + saldoInicial + " euros");
 		
 		
+		//System.out.println("a new client named " + nomeCliente + " with id number " + idCliente + "  openned a  "
+		//		+ tipoConta + " type account and has a deposit of " + saldoInicial + " euros");
+		
+	}
 		
 //		public Cliente() {
-	//
 //			idCliente++;
-	//
+//
 //			System.out.println("Selecionou a opção 1");
-	//
+//
 //			System.out.println("Criar cliente :");
 //			this.nomeCliente = userInput.next();
 	//
@@ -81,5 +81,5 @@ public class Cliente {
 		
 		
 
-	}
+	
 }
