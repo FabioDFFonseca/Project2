@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,20 +8,30 @@ public class Cliente {
 	private static int idCliente = 0;
 	private String nomeCliente;
 	private String tipoConta;
-	private ArrayList<String> saldoInicial = new ArrayList<>();
+	private ArrayList<String> saldoInicial = new ArrayList<String>();
+	
+	public Cliente() {
+		
+		setId();
+	}
 	
 	public Cliente(String nome, String tipo, String saldoInicial) {
-		idCliente++;
+		
 		this.nomeCliente=nome;
 		this.tipoConta=tipo;
 		this.saldoInicial.add(saldoInicial);
+	}
+	
+	private void setId() {
+		
+		idCliente++;
 	}
 			
 	public String getNomeCliente() {
 		return nomeCliente;
 	}
 
-	private void setNomeCliente(String nomeCliente) {
+	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
 
@@ -27,7 +39,7 @@ public class Cliente {
 		return tipoConta;
 	}
 
-	private void setTipoConta(String tipoConta) {
+	public void setTipoConta(String tipoConta) {
 		this.tipoConta = tipoConta;
 	}
 
@@ -35,8 +47,8 @@ public class Cliente {
 		return saldoInicial;
 	}
 
-	private void setSaldoInicial(ArrayList<String> saldoInicial) {
-		this.saldoInicial = saldoInicial;
+	public void setSaldoInicial(String saldoInicial) {
+		this.saldoInicial.add(saldoInicial);
 	}
 
 	public void displayClient(String cliente) {

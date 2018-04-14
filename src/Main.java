@@ -11,12 +11,18 @@ public class Main {
 		listaClientes.add(cliente1);
 		Cliente cliente2 = new Cliente("Jeff Bezos", "O", "10000000");
 		listaClientes.add(cliente2);
-		Cliente cliente3 = new Cliente("Marissa Mayer ", "v", "100000000");
+		Cliente cliente3 = new Cliente("Marissa Mayer ", "V", "100000000");
 		listaClientes.add(cliente3);
-		
-		
+		Cliente cliente4 = new Cliente();
+		cliente4.setNomeCliente("Larry Page");
+		cliente4.setTipoConta("V");
+		cliente4.setSaldoInicial("2000000");
+		listaClientes.add(cliente4);
+
+		displayClientes();
 
 	}
+
 
 	public static void displayClientes() {
 
