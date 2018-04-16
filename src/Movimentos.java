@@ -1,24 +1,23 @@
 
-public class Movimentos {
+public class Movimentos{
 	
-	private int deposito;
-	private int levantamento;
+	private double deposito;
 	
-	private int getDeposito() {
-		return deposito;
-	}
-	private void setDeposito(int deposito) {
+	
+	public Movimentos(double deposito) {
+		super();
 		this.deposito = deposito;
 	}
-	private int getLevantamento() {
-		return levantamento;
+	private double getDeposito() {
+		return deposito;
 	}
-	
-	private void setLevantamento(int levantamento) {
-		this.levantamento = levantamento;
+	@Override
+	public String toString() {
+		return "Movimentos [deposito=" + deposito + "]";
 	}
-	
-	
+	private void setDeposito(double deposito) {
+		this.deposito = deposito;
+	}
 	
 
 }

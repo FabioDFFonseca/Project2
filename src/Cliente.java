@@ -4,29 +4,43 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Cliente {
-
-	private static int idCliente = 0;
+	
+	private int idCliente;
+	private static int idCounter = 0;
 	private String nomeCliente;
 	private String tipoConta;
-	private ArrayList<String> saldoInicial = new ArrayList<String>();
+	private Conta contaAOrdem;
+	//private ArrayList<Double> saldo = new ArrayList<Double>();
 	
-	public Cliente() {
-		
-		setId();
+	public Conta getContaAOrdem() {
+		return contaAOrdem;
+	}
+
+	public void setContaAOrdem(Conta contaAOrdem) {
+		this.contaAOrdem = contaAOrdem;
 	}
 	
-	public Cliente(String nome, String tipo, String saldoInicial) {
-		
+	public Cliente(String nome, String tipo) {
 		this.nomeCliente=nome;
 		this.tipoConta=tipo;
-		this.saldoInicial.add(saldoInicial);
-	}
-	
-	private void setId() {
+		contaAOrdem = new Conta();
+		setId();
 		
-		idCliente++;
+	}
+	private void setId() {
+		idCounter++;
+		this.idCliente = idCounter;
 	}
 			
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
 	public String getNomeCliente() {
 		return nomeCliente;
 	}
@@ -43,13 +57,13 @@ public class Cliente {
 		this.tipoConta = tipoConta;
 	}
 
-	public ArrayList<String> getSaldoInicial() {
-		return saldoInicial;
-	}
-
-	public void setSaldoInicial(String saldoInicial) {
-		this.saldoInicial.add(saldoInicial);
-	}
+//	public ArrayList<Double> getSaldo() {
+//		return saldo;
+//	}
+//
+//	public void setSaldo(double saldo) {
+//		this.saldo.add(saldo);
+//	}
 
 	public void displayClient(String cliente) {
 
