@@ -110,7 +110,6 @@ public class Main {
  break;
 
  case "2":
- // Listar listarClientes = new Listar();
 	 displayClientes();
 	 break;
 
@@ -122,6 +121,7 @@ public class Main {
  op = userInput.nextInt();
  if(op == 1) {
 	 System.out.println("Deposito");
+	 
  }else {
 	 System.out.println("Levantamento");
  }
