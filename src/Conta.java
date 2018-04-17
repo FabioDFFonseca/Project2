@@ -4,13 +4,13 @@ public class Conta {
 	
 	private static int idCartao = 1001 ;
 	private double saldo;
+	private double movimento;
 	private ArrayList<Movimentos> movimentos = new ArrayList<Movimentos>();
 	
 	
-	
-	public void deposito(double deposito) {
-		this.saldo += deposito;
-		movimentos.add(new Movimentos(deposito));
+	public void deposito(double movimento) {
+		this.movimento += movimento;
+		movimentos.add(new Movimentos(movimento));
 	}
 	
 	
@@ -19,8 +19,8 @@ public class Conta {
 	}
 
 
-	public void setMovimentos(ArrayList<Movimentos> movimentos) {
-		this.movimentos = movimentos;
+	public void setMovimentos(ArrayList<Movimentos> movimento ) {
+		this.movimentos = movimento;
 	}
 
 
