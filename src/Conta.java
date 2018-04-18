@@ -7,10 +7,10 @@ public class Conta {
 	private double movimento;
 	private ArrayList<Movimentos> movimentos = new ArrayList<Movimentos>();
 	
-	
 	public void deposito(double movimento) {
-		this.movimento += movimento;
+		this.movimento = movimento;
 		movimentos.add(new Movimentos(movimento));
+		setSaldo(movimento);
 	}
 	
 	
@@ -23,20 +23,18 @@ public class Conta {
 		this.movimentos = movimento;
 	}
 
-
+    private void setSaldo(double movimento) {
+    	this.saldo +=movimento;
+    }
 	public double getSaldo() {
 		return saldo;
 	}
 
 
 	public Conta() {
-		idCartao++;
-		
+		idCartao++;		
 	}
 
-	private void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
 	private double getSaldo1() {
 		return saldo;
 	}
