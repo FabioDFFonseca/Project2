@@ -8,9 +8,16 @@ public class Conta {
 	private ArrayList<Movimentos> movimentos = new ArrayList<Movimentos>();
 	
 	public void deposito(double movimento) {
+		
+		if (movimento > getSaldo()) {
 		this.movimento = movimento;
 		movimentos.add(new Movimentos(movimento));
-		setSaldo(movimento);
+		setSaldo(movimento);}
+		else {
+			System.out.println("Saldo insuficiente!");
+		}
+		
+		
 	}
 	
 	public ArrayList<Movimentos> getMovimentos() {

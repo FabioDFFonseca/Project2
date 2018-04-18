@@ -54,13 +54,7 @@ public class Main {
 	public static void displayCliente(int id) {
 
 		System.out.println("Movimentos do cliente " + listaClientes.get(id).getNomeCliente());
-
-		for (int i = 0; i < listaClientes.size(); i++) {
-
-			System.out.println(listaClientes.get(id-1).getContaAOrdem().getMovimentos());
-
-		}
-
+		System.out.println(listaClientes.get(id-1).getContaAOrdem().getMovimentos());
 		System.out.println(listaClientes.get(id).getContaAOrdem().getSaldo());
 	}
 
@@ -117,7 +111,7 @@ public class Main {
 			case "2":
 
 				int op = 0;
-				System.out.println("1. Listar todos clientes ? S/N ");
+				System.out.println("1. Listar todos clientes ? Press. 1 ");
 				op = userInput.nextInt();
 				if (op == 1) {
 					displayClientes();
