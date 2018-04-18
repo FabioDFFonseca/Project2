@@ -13,11 +13,9 @@ public class Conta {
 		setSaldo(movimento);
 	}
 	
-	
 	public ArrayList<Movimentos> getMovimentos() {
 		return movimentos;
 	}
-
 
 	public void setMovimentos(ArrayList<Movimentos> movimento ) {
 		this.movimentos = movimento;
