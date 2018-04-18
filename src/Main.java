@@ -124,7 +124,7 @@ public class Main {
 					movimento = userInput.nextInt();
 					movimento *= (-1);
 				}
-				listaClientes.get(oId).getContaAOrdem().deposito(movimento);
+				listaClientes.get(oId-1).getContaAOrdem().deposito(movimento);
 				break;
 
 			case "4":
