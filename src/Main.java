@@ -44,19 +44,23 @@ public class Main {
 		System.out.println("|ID ------Nome----------Conta ---- Valor ---");
 
 		for (int i = 0; i < listaClientes.size(); i++) {
-			System.out.print("| " + listaClientes.get(i).getIdCliente() + "   " + '\t');
+			System.out.print("| " + listaClientes.get(i).getIdCliente() + "   " + "\t");
 			System.out.print(listaClientes.get(i).getNomeCliente() + '\t');
 			System.out.print(listaClientes.get(i).getTipoConta() + '\t');
-			System.out.println(listaClientes.get(i).getContaAOrdem().getSaldo() + '\t' + "    ");
+			System.out.println(listaClientes.get(i).getContaAOrdem().getSaldo() + "\t" + "    ");
 
 		}
 	}
 
 	public static void displayCliente(int id) {
-
-		System.out.println("Movimentos do cliente " + listaClientes.get(id).getNomeCliente());
-		System.out.println(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
-		System.out.println("Saldo atual " + listaClientes.get(id - 1).getContaAOrdem().getSaldo());
+		System.out.println("Nome do titular");
+		System.out.println( listaClientes.get(id-1).getNomeCliente()+ '\t' + "    ");
+		System.out.println("Movimentos do cliente " +"\t"+"\t"+"       Saldo atual "+"\t"+"\t"+"Saldo no Cartão  ");
+		System.out.print(listaClientes.get(id - 1).getContaAOrdem().getMovimentos() +" \t" + "    ");
+		System.out.print(+ listaClientes.get(id - 1).getContaAOrdem().getSaldo()+ '\t' + "    ");
+		if(listaClientes.get(id-1).getTipoConta().equalsIgnoreCase("V")){
+			System.out.println( + listaClientes.get(id - 1).getCartaoCredito().getSaldoCartaoCredito());
+		}
 	}
 
 	public static void DisplayMenu() {
@@ -149,9 +153,7 @@ public class Main {
 					int idDestino = userInput.nextInt();
 					Conta contaDestino = listaClientes.get(idDestino - 1).getContaAOrdem();
 					listaClientes.get(oId - 1).getContaAOrdem().transfer(contaDestino, movimento);
-
 				}
-
 				break;
 
 			case "4":
