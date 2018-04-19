@@ -9,7 +9,7 @@ public class Main {
 
 		Cliente cliente1 = new Cliente("Mark Zuckerberg", "V");
 		listaClientes.add(cliente1);
-		 cliente1.getContaAOrdem().depositar(100000);
+		cliente1.getContaAOrdem().depositar(100000);
 		// cliente1.getContaAOrdem().deposito(99990);
 		// System.out.println(cliente1.getContaAOrdem().getMovimentos());
 		//
@@ -40,13 +40,14 @@ public class Main {
 
 	public static void displayClientes() {
 
-		System.out.println("Lista de clientes UmeuBanku");
+		System.out.println("|-------- Lista de clientes UmeuBanku-------");
+		System.out.println("|ID ------Nome----------Conta ---- Valor ---");
 
 		for (int i = 0; i < listaClientes.size(); i++) {
-			System.out.println(listaClientes.get(i).getIdCliente());
+			System.out.print("| " + listaClientes.get(i).getIdCliente() + "   " + '\t');
 			System.out.print(listaClientes.get(i).getNomeCliente() + '\t');
 			System.out.print(listaClientes.get(i).getTipoConta() + '\t');
-			System.out.println(listaClientes.get(i).getContaAOrdem().getSaldo());
+			System.out.println(listaClientes.get(i).getContaAOrdem().getSaldo() + '\t' + "    ");
 
 		}
 	}
@@ -54,11 +55,10 @@ public class Main {
 	public static void displayCliente(int id) {
 
 		System.out.println("Movimentos do cliente " + listaClientes.get(id).getNomeCliente());
-		System.out.println(listaClientes.get(id-1).getContaAOrdem().getMovimentos());
-		System.out.println("Saldo atual " + listaClientes.get(id-1).getContaAOrdem().getSaldo());
+		System.out.println(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
+		System.out.println("Saldo atual " + listaClientes.get(id - 1).getContaAOrdem().getSaldo());
 	}
-	
-	
+
 	public static void DisplayMenu() {
 
 		Scanner userInput = new Scanner(System.in);
@@ -66,22 +66,23 @@ public class Main {
 		String nomeCliente;
 		String tipoConta;
 		int oId;
+		int op;
 
 		do {
 
 			System.out.println("*****************************************");
-			System.out.println("| Gestão de Contas |");
+			System.out.println("| Gestão de Contas                      |");
 			System.out.println("*****************************************");
-			System.out.println("| Opções: |");
-			System.out.println("| 1. Criar cliente |");
-			System.out.println("| 2. Listar clientes |");
-			System.out.println("| 3. Opções cliente |");
-			System.out.println("| 4. Seleccionar cartão |");
-			System.out.println("| 5. Avançar período |");
-			System.out.println("| 6. Sair |");
+			System.out.println("| Opções:                               |");
+			System.out.println("| 1. Criar cliente                      |");
+			System.out.println("| 2. Listar clientes                    |");
+			System.out.println("| 3. Opções cliente                     |");
+			System.out.println("| 4. Seleccionar cartão                 |");
+			System.out.println("| 5. Avançar período                    |");
+			System.out.println("| 6. Sair                               |");
 			System.out.println("*****************************************");
 
-			System.out.print("Escolha uma opção");
+			System.out.print("Escolha uma opção 1 a 6 > ");
 
 			readOption = userInput.next();
 
@@ -91,7 +92,6 @@ public class Main {
 				System.out.println("nome de cliente :" + "tipo de conta: ");
 				nomeCliente = userInput.next();
 				tipoConta = userInput.next();
-
 				Cliente criarCliente = new Cliente(nomeCliente, tipoConta);
 				listaClientes.add(criarCliente);
 
@@ -99,28 +99,35 @@ public class Main {
 
 			case "2":
 
-				int op = 0;
-				System.out.println("1. Listar todos clientes ?"  + "\n" + "Press: 1 ");
-				op = userInput.nextInt();
-				if (op == 1) {
-					displayClientes();
-					System.out.println("Press enter para continuar");
-					double movimento = userInput.nextInt();
-				} else {
-					System.out.println("Introduza o Id do cliente");
-					oId = userInput.nextInt();
-					displayCliente(oId);
-					System.out.println("Press enter para continuar");
-				}
+				String opt;
+				System.out.println("1. Listar todos clientes ?" + "\t" + "S / N");
+				
+			 do {
+				 	opt = userInput.next();
+					if (opt.equalsIgnoreCase("s")) {
+						displayClientes();
+						System.out.println("Press enter para continuar");
+						
+					} else if (opt.equalsIgnoreCase("n")) {
+						System.out.println("Introduza o Id do cliente");
+						oId = userInput.nextInt();
+						displayCliente(oId);
+					}
+					 else {
+						System.out.println("Opção não válida S / N");	
+					}
+				} while (!opt.equalsIgnoreCase("n") && !opt.equalsIgnoreCase("s"));
+				
+			 	System.out.println("Press enter para continuar");
+				
 				break;
-
 
 			case "3":
 				// Options OptionsCliente = new Options();
 				System.out.println("1 - Depositos:");
 				System.out.println("2 - Levantamentos:");
 				System.out.println("3 - Transferencias");
-				
+
 				op = 0;
 				op = userInput.nextInt();
 				double movimento = 0;
@@ -131,20 +138,20 @@ public class Main {
 					System.out.println("Introduza valor a Depositar");
 					movimento = userInput.nextInt();
 					listaClientes.get(oId - 1).getContaAOrdem().depositar(movimento);
-				} else if(op ==2){
+				} else if (op == 2) {
 					System.out.println("Levantamento");
 					movimento = userInput.nextInt();
 					listaClientes.get(oId - 1).getContaAOrdem().levantar(movimento);
-				}else {
+				} else {
 					System.out.println("Valor a transferir");
 					movimento = userInput.nextInt();
 					System.out.println("Conta destino");
 					int idDestino = userInput.nextInt();
-					Conta contaDestino= listaClientes.get(idDestino - 1).getContaAOrdem();
-					listaClientes.get(oId - 1).getContaAOrdem().transfer(contaDestino,movimento);
+					Conta contaDestino = listaClientes.get(idDestino - 1).getContaAOrdem();
+					listaClientes.get(oId - 1).getContaAOrdem().transfer(contaDestino, movimento);
 
 				}
-				
+
 				break;
 
 			case "4":
