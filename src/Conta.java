@@ -2,20 +2,28 @@ import java.util.ArrayList;
 
 public class Conta {
 	
-	private static int idCartao = 1001 ;
+	private static int idConta = 1001 ;
 	private double saldo;
-	private double movimento;
 	private ArrayList<Movimentos> movimentos = new ArrayList<Movimentos>();
 	
-	public void deposito(double movimento) {
-		
-		if (movimento > getSaldo()) {
-		this.movimento = movimento;
-		movimentos.add(new Movimentos(movimento));
-		setSaldo(movimento);}
-		else {
-			System.out.println("Saldo insuficiente!");
+	public void depositar(double movimento) {
+		this.saldo += movimento;	
+		movimentos.add(new Movimentos(movimento, "Deposito"));
+	}
+	
+	public void levantar(double movimento) {	
+		if(saldo < movimento) {
+			System.out.println("Saldo Insuficiente!");
+
+		}else {
+			this.saldo -= movimento;
+			movimentos.add(new Movimentos(movimento, "Levantamento"));
 		}
+	}
+	
+	public void transfer(Conta to, double transfer) {
+		this.levantar(transfer);
+		to.depositar(transfer);
 		
 		
 	}
@@ -29,7 +37,7 @@ public class Conta {
 	}
 
     private void setSaldo(double movimento) {
-    	this.saldo +=movimento;
+    	this.saldo += movimento;
     }
 	public double getSaldo() {
 		return saldo;
@@ -37,23 +45,12 @@ public class Conta {
 
 
 	public Conta() {
-		idCartao++;		
+		idConta++;		
 	}
 
-	private double getSaldo1() {
-		return saldo;
-	}
-
-//	private double getMovimentos() {
-//		return movimentos;
-//	}
-//
-//	private void setMovimentos(double movimentos) {
-//		this.movimentos = movimentos;
-//	}
 
 	private static int getIdCartao() {
-		return idCartao;
+		return idConta;
 	}
 
 }

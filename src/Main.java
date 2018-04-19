@@ -9,14 +9,14 @@ public class Main {
 
 		Cliente cliente1 = new Cliente("Mark Zuckerberg", "V");
 		listaClientes.add(cliente1);
-		// cliente1.getContaAOrdem().deposito(100000);
+		 cliente1.getContaAOrdem().depositar(100000);
 		// cliente1.getContaAOrdem().deposito(99990);
 		// System.out.println(cliente1.getContaAOrdem().getMovimentos());
 		//
 		//
 		Cliente cliente2 = new Cliente("Jeff Bezos", "O");
 		listaClientes.add(cliente2);
-		// cliente2.getContaAOrdem().deposito(250000);
+		cliente2.getContaAOrdem().depositar(250000);
 		// cliente2.getContaAOrdem().deposito(5555);
 		// System.out.println(cliente1.getContaAOrdem().getMovimentos());
 		//
@@ -55,21 +55,10 @@ public class Main {
 
 		System.out.println("Movimentos do cliente " + listaClientes.get(id).getNomeCliente());
 		System.out.println(listaClientes.get(id-1).getContaAOrdem().getMovimentos());
-		System.out.println(listaClientes.get(id).getContaAOrdem().getSaldo());
+		System.out.println("Saldo atual " + listaClientes.get(id-1).getContaAOrdem().getSaldo());
 	}
-
-	// public void ListofCustomers(){
-	//
-	// for (int i =0; i<listaClientes.size() ; i++) {
-	//
-	// System.out.println("a new client named " + listaClientes.nomeCliente[i] +
-	// " with id number " + idCliente + " opened a "
-	// + tipoConta + " type account and has a deposit of " + saldoInicial + "
-	// euros");
-	//
-	// System.out.println(" cliente "+ listaCliente[i]);
-	// }
-
+	
+	
 	public static void DisplayMenu() {
 
 		Scanner userInput = new Scanner(System.in);
@@ -111,7 +100,7 @@ public class Main {
 			case "2":
 
 				int op = 0;
-				System.out.println("1. Listar todos clientes ? Press. 1 ");
+				System.out.println("1. Listar todos clientes ?"  + "\n" + "Press: 1 ");
 				op = userInput.nextInt();
 				if (op == 1) {
 					displayClientes();
@@ -123,29 +112,39 @@ public class Main {
 					displayCliente(oId);
 					System.out.println("Press enter para continuar");
 				}
-			//	listaClientes.get(oId-1).getContaAOrdem().getSaldo();
 				break;
 
-			// alteração 17.4 by pm
 
 			case "3":
 				// Options OptionsCliente = new Options();
 				System.out.println("1 - Depositos:");
 				System.out.println("2 - Levantamentos:");
+				System.out.println("3 - Transferencias");
+				
 				op = 0;
 				op = userInput.nextInt();
-				double movimento;
+				double movimento = 0;
+				double transfer = 0;
 				System.out.println("Introduza Id do cliente");
 				oId = userInput.nextInt();
 				if (op == 1) {
 					System.out.println("Introduza valor a Depositar");
 					movimento = userInput.nextInt();
-				} else {
+					listaClientes.get(oId - 1).getContaAOrdem().depositar(movimento);
+				} else if(op ==2){
 					System.out.println("Levantamento");
 					movimento = userInput.nextInt();
-					movimento *= (-1);
+					listaClientes.get(oId - 1).getContaAOrdem().levantar(movimento);
+				}else {
+					System.out.println("Valor a transferir");
+					movimento = userInput.nextInt();
+					System.out.println("Conta destino");
+					int idDestino = userInput.nextInt();
+					Conta contaDestino= listaClientes.get(idDestino - 1).getContaAOrdem();
+					listaClientes.get(oId - 1).getContaAOrdem().transfer(contaDestino,movimento);
+
 				}
-				listaClientes.get(oId - 1).getContaAOrdem().deposito(movimento);
+				
 				break;
 
 			case "4":

@@ -1,22 +1,36 @@
+import java.time.LocalDate;
 
 public class Movimentos{
 	
-	private double deposito;
+	private double valor;
+	private double transfer;
+	LocalDate localDate = LocalDate.now();
+	String tipoDeMov;
 	
 	
-	public Movimentos(double deposito) {
+	
+	public Movimentos(double deposito, String tipo) {
 		super();
-		this.deposito = deposito;
+		this.valor = deposito;
+		this.localDate = LocalDate.now();
+		this.tipoDeMov = tipo;
+		
 	}
 	private double getDeposito() {
-		return deposito;
+		return valor;
+	}
+	public double getTransfer() {
+		return transfer;
+	}
+	public void setTransfer(double transfer) {
+		this.transfer = transfer;
 	}
 	@Override
 	public String toString() {
-		return "Movimentos [deposito=" + deposito + "]";
+		return  tipoDeMov + " de " + valor + " as " + localDate;
 	}
 	private void setDeposito(double deposito) {
-		this.deposito = deposito;
+		this.valor = deposito;
 	}
 	
 
