@@ -72,8 +72,8 @@ public class Main {
 			System.out.println("*****************************************");
 			System.out.println("| Opções:                               |");
 			System.out.println("| 1. Criar cliente                      |");
-			System.out.println("| 2. Listar clientes                    |");
-			System.out.println("| 3. Operações cliente                  |");
+			System.out.println("| 2. Consultas clientes                 |");
+			System.out.println("| 3. Operações clientes                 |");
 			System.out.println("| 4. Compras cartão crédito             |");
 			System.out.println("| 5. Avançar período                    |");
 			System.out.println("| 6. Sair                               |");
