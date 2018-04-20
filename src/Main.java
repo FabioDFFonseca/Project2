@@ -34,7 +34,7 @@ public class Main {
 
 		DisplayMenu();
 
-		displayClientes();
+		//displayClientes();
 
 	}
 
@@ -131,6 +131,7 @@ public class Main {
 				System.out.println("1 - Depositos:");
 				System.out.println("2 - Levantamentos:");
 				System.out.println("3 - Transferencias");
+				System.out.println("4 - Compra a credito");
 
 				op = 0;
 				op = userInput.nextInt();
@@ -146,13 +147,18 @@ public class Main {
 					System.out.println("Levantamento");
 					movimento = userInput.nextInt();
 					listaClientes.get(oId - 1).getContaAOrdem().levantar(movimento);
-				} else {
+				} else if (op == 3) {
 					System.out.println("Valor a transferir");
 					movimento = userInput.nextInt();
 					System.out.println("Conta destino");
 					int idDestino = userInput.nextInt();
 					Conta contaDestino = listaClientes.get(idDestino - 1).getContaAOrdem();
 					listaClientes.get(oId - 1).getContaAOrdem().transfer(contaDestino, movimento);
+				} else  {
+					System.out.println("Compra credito");
+					double compra = userInput.nextInt();
+					listaClientes.get(oId - 1).getContaAOrdem().credito(compra);
+					
 				}
 				break;
 

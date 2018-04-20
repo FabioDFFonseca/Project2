@@ -21,11 +21,17 @@ public class Conta {
 		}
 	}
 	
+	public void credito(double movimento) {
+		
+		CartaoCredito.
+		movimentos.add(new Movimentos(movimento, "cartão credito"));
+	}
+	
+	
 	public void transfer(Conta to, double transfer) {
 		this.levantar(transfer);
 		to.depositar(transfer);
-		
-		
+			
 	}
 	
 	public ArrayList<Movimentos> getMovimentos() {
