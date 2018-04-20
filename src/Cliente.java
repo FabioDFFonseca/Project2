@@ -20,6 +20,10 @@ public class Cliente {
 		this.contaAOrdem = contaAOrdem;
 	}
 
+	public Cliente () {
+		
+	}
+	
 	public Cliente(String nome, String tipo) {
 		this.nomeCliente = nome;
 		this.tipoConta = tipo;
@@ -28,7 +32,7 @@ public class Cliente {
 
 		if (tipoConta.equalsIgnoreCase("V")) {
 			cartaoCredito = new CartaoCredito();
-			System.out.println("tem cartao de credito");
+
 		}
 
 	}

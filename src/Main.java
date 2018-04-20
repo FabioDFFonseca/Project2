@@ -10,31 +10,23 @@ public class Main {
 		Cliente cliente1 = new Cliente("Mark Zuckerberg", "V");
 		listaClientes.add(cliente1);
 		cliente1.getContaAOrdem().depositar(100000);
-		// cliente1.getContaAOrdem().deposito(99990);
-		// System.out.println(cliente1.getContaAOrdem().getMovimentos());
-		//
-		//
+
 		Cliente cliente2 = new Cliente("Jeff Bezos", "O");
 		listaClientes.add(cliente2);
 		cliente2.getContaAOrdem().depositar(250000);
-		// cliente2.getContaAOrdem().deposito(5555);
-		// System.out.println(cliente1.getContaAOrdem().getMovimentos());
-		//
-		// for(int i = 0; i< listaClientes.size(); i++) {
-		// listaClientes.get(i).getContaAOrdem().deposito(-10);
-		// }
 
 		Cliente cliente3 = new Cliente("Marissa Mayer ", "V");
 		listaClientes.add(cliente3);
-		// Cliente cliente4 = new Cliente();
-		// cliente4.setNomeCliente("Larry Page");
-		// cliente4.setTipoConta("V");
-		// cliente4.setSaldo(2000000);
-		// listaClientes.add(cliente4);
+		cliente3.getContaAOrdem().depositar(520000);
+		
+		Cliente cliente4 = new Cliente("Larry Page", "V");
+		listaClientes.add(cliente4);
+		cliente4.getContaAOrdem().depositar(550000);
+
 
 		DisplayMenu();
 
-		//displayClientes();
+	
 
 	}
 
@@ -54,12 +46,13 @@ public class Main {
 
 	public static void displayCliente(int id) {
 		System.out.println("Nome do titular");
-		System.out.println( listaClientes.get(id-1).getNomeCliente()+ '\t' + "    ");
-		System.out.println("Movimentos do cliente " +"\t"+"\t"+"       Saldo atual "+"\t"+"\t"+"Saldo no Cartão  ");
-		System.out.print(listaClientes.get(id - 1).getContaAOrdem().getMovimentos() +" \t" + "    ");
-		System.out.print(+ listaClientes.get(id - 1).getContaAOrdem().getSaldo()+ '\t' + "    ");
-		if(listaClientes.get(id-1).getTipoConta().equalsIgnoreCase("V")){
-			System.out.println( + listaClientes.get(id - 1).getCartaoCredito().getSaldoCartaoCredito());
+		System.out.println(listaClientes.get(id - 1).getNomeCliente() + '\t' + "    ");
+		System.out.println(
+				"Movimentos do cliente " + "\t" + "\t" + "          Saldo atual " + "\t" + "\t" + "Saldo no Cartão  ");
+		System.out.print(listaClientes.get(id - 1).getContaAOrdem().getMovimentos() + " \t" + "    ");
+		System.out.print(+listaClientes.get(id - 1).getContaAOrdem().getSaldo() + '\t' + "    ");
+		if (listaClientes.get(id - 1).getTipoConta().equalsIgnoreCase("V")) {
+			System.out.println(" \t" + "    " + listaClientes.get(id - 1).getCartaoCredito().getSaldoCartaoCredito());
 		}
 	}
 
@@ -80,8 +73,8 @@ public class Main {
 			System.out.println("| Opções:                               |");
 			System.out.println("| 1. Criar cliente                      |");
 			System.out.println("| 2. Listar clientes                    |");
-			System.out.println("| 3. Opções cliente                     |");
-			System.out.println("| 4. Seleccionar cartão                 |");
+			System.out.println("| 3. Operações cliente                  |");
+			System.out.println("| 4. Compras cartão crédito             |");
 			System.out.println("| 5. Avançar período                    |");
 			System.out.println("| 6. Sair                               |");
 			System.out.println("*****************************************");
@@ -105,25 +98,24 @@ public class Main {
 
 				String opt;
 				System.out.println("1. Listar todos clientes ?" + "\t" + "S / N");
-				
-			 do {
-				 	opt = userInput.next();
+
+				do {
+					opt = userInput.next();
 					if (opt.equalsIgnoreCase("s")) {
 						displayClientes();
 						System.out.println("Press enter para continuar");
-						
+
 					} else if (opt.equalsIgnoreCase("n")) {
 						System.out.println("Introduza o Id do cliente");
 						oId = userInput.nextInt();
 						displayCliente(oId);
-					}
-					 else {
-						System.out.println("Opção não válida S / N");	
+					} else {
+						System.out.println("Opção não válida S / N");
 					}
 				} while (!opt.equalsIgnoreCase("n") && !opt.equalsIgnoreCase("s"));
-				
-			 	System.out.println("Press enter para continuar");
-				
+
+				System.out.println("Press enter para continuar");
+
 				break;
 
 			case "3":
@@ -131,7 +123,6 @@ public class Main {
 				System.out.println("1 - Depositos:");
 				System.out.println("2 - Levantamentos:");
 				System.out.println("3 - Transferencias");
-				System.out.println("4 - Compra a credito");
 
 				op = 0;
 				op = userInput.nextInt();
@@ -147,24 +138,22 @@ public class Main {
 					System.out.println("Levantamento");
 					movimento = userInput.nextInt();
 					listaClientes.get(oId - 1).getContaAOrdem().levantar(movimento);
-				} else if (op == 3) {
+				} else {
 					System.out.println("Valor a transferir");
 					movimento = userInput.nextInt();
 					System.out.println("Conta destino");
 					int idDestino = userInput.nextInt();
 					Conta contaDestino = listaClientes.get(idDestino - 1).getContaAOrdem();
 					listaClientes.get(oId - 1).getContaAOrdem().transfer(contaDestino, movimento);
-				} else  {
-					System.out.println("Compra credito");
-					double compra = userInput.nextInt();
-					listaClientes.get(oId-1).getCartaoCredito().compraCredito(compra);
-					
 				}
 				break;
 
 			case "4":
-				// EscolhaCartao EscolhaCartao = new EscolhaCartao();
-				System.out.println("Indisponivel!");
+				System.out.println("Introduza Id do cliente");
+				oId = userInput.nextInt();
+				System.out.println("Valor da compra a credito");
+				double compra = userInput.nextInt();
+				listaClientes.get(oId - 1).getCartaoCredito().compraCredito(compra);
 				break;
 
 			case "5":
