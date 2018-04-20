@@ -16,16 +16,20 @@ public class CartaoCredito {
 //		
 //	}
 	
-	public void CartaoCredito(double compra) {	
-		if(saldoCartaoCredito < compra) {
-			System.out.println("Saldo no Cartão Insuficiente!");
-
-		}else {
-			this.saldoCartaoCredito -= compra;
-			
-		}
+	public void CartaoCredito() {	
+	
+	
 	}
 	
+	
+	public void compraCredito(double compra) {
+		
+		if(saldoCartaoCredito < compra) {
+			System.out.println("Saldo no Cartão Insuficiente!");
+		}else {
+			this.saldoCartaoCredito -= compra;	
+		}	
+	}
 	
 	private int getIdCartao() {
 

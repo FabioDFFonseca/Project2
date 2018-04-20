@@ -157,7 +157,7 @@ public class Main {
 				} else  {
 					System.out.println("Compra credito");
 					double compra = userInput.nextInt();
-					listaClientes.get(oId - 1).getContaAOrdem().credito(compra);
+					listaClientes.get(oId-1).getCartaoCredito().compraCredito(compra);
 					
 				}
 				break;

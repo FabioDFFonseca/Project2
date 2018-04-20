@@ -28,6 +28,7 @@ public class Cliente {
 
 		if (tipoConta.equalsIgnoreCase("V")) {
 			cartaoCredito = new CartaoCredito();
+			System.out.println("tem cartao de credito");
 		}
 
 	}

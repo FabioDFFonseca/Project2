@@ -8,7 +8,6 @@ public class Movimentos{
 	String tipoDeMov;
 	
 	
-	
 	public Movimentos(double deposito, String tipo) {
 		super();
 		this.valor = deposito;
