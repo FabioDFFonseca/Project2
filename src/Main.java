@@ -149,6 +149,8 @@ public class Main {
 				break;
 
 			case "4":
+				
+				
 				System.out.println("Introduza Id do cliente");
 				oId = userInput.nextInt();
 				System.out.println("Valor da compra a credito");
