@@ -42,14 +42,11 @@ public class Conta {
 		return saldo;
 	}
 
-
 	public Conta() {
 		idConta++;		
 	}
 
-
 	private static int getIdCartao() {
 		return idConta;
 	}
-
 }

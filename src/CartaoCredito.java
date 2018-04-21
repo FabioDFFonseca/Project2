@@ -24,6 +24,14 @@ public class CartaoCredito {
 		}	
 	}
 	
+	public ArrayList<Movimentos> getMovimentosCredito() {
+		return movimentosCredito;
+	}
+
+	private void setMovimentosCredito(ArrayList<Movimentos> movimentosCredito) {
+		this.movimentosCredito = movimentosCredito;
+	}
+
 	private int getIdCartao() {
 
 		return idCartao;
@@ -36,4 +44,9 @@ public class CartaoCredito {
 		
 		return saldoCartaoCredito;
 	}
+
+	public void setSaldoCartaoCredito(double saldoCartaoCredito) {
+		this.saldoCartaoCredito = saldoCartaoCredito;
+	}
+	
 }

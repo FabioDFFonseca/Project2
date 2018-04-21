@@ -7,6 +7,10 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		Cliente uMeuBanku = new Cliente("uMeuBanku", "O");
+		listaClientes.add(uMeuBanku);
+		uMeuBanku.getContaAOrdem().depositar(0);
+		
 		Cliente cliente1 = new Cliente("Mark Zuckerberg", "V");
 		listaClientes.add(cliente1);
 		cliente1.getContaAOrdem().depositar(100000);
@@ -18,16 +22,31 @@ public class Main {
 		Cliente cliente3 = new Cliente("Marissa Mayer ", "V");
 		listaClientes.add(cliente3);
 		cliente3.getContaAOrdem().depositar(520000);
-		
+
 		Cliente cliente4 = new Cliente("Larry Page", "V");
 		listaClientes.add(cliente4);
 		cliente4.getContaAOrdem().depositar(550000);
 
-
 		DisplayMenu();
 
-	
+	}
 
+	public static void finalMes() {
+
+		for (int i = 0; i < listaClientes.size(); i++) {
+			double despesas;
+			if (listaClientes.get(i).getTipoConta().equalsIgnoreCase("v")) {
+
+				despesas = 500 - listaClientes.get(i).getCartaoCredito().getSaldoCartaoCredito();
+				
+				System.out.println("despesas  mes " + despesas);
+				Conta contaDestino = listaClientes.get(0).getContaAOrdem();
+				listaClientes.get(i).getContaAOrdem().transfer(contaDestino, despesas); 
+				listaClientes.get(i).getCartaoCredito().setSaldoCartaoCredito(500);
+				
+				
+			}
+		}
 	}
 
 	public static void displayClientes() {
@@ -40,7 +59,6 @@ public class Main {
 			System.out.print(listaClientes.get(i).getNomeCliente() + '\t');
 			System.out.print(listaClientes.get(i).getTipoConta() + '\t');
 			System.out.println(listaClientes.get(i).getContaAOrdem().getSaldo() + "\t" + "    ");
-
 		}
 	}
 
@@ -52,6 +70,7 @@ public class Main {
 		System.out.print(listaClientes.get(id - 1).getContaAOrdem().getMovimentos() + " \t" + "    ");
 		System.out.print(+listaClientes.get(id - 1).getContaAOrdem().getSaldo() + '\t' + "    ");
 		if (listaClientes.get(id - 1).getTipoConta().equalsIgnoreCase("V")) {
+			System.out.print(listaClientes.get(id - 1).getCartaoCredito().getMovimentosCredito() + " \t" + "    ");
 			System.out.println(" \t" + "    " + listaClientes.get(id - 1).getCartaoCredito().getSaldoCartaoCredito());
 		}
 	}
@@ -75,7 +94,7 @@ public class Main {
 			System.out.println("| 2. Consultas clientes                 |");
 			System.out.println("| 3. Operações clientes                 |");
 			System.out.println("| 4. Compras cartão crédito             |");
-			System.out.println("| 5. Avançar período                    |");
+			System.out.println("| 5. Final do mês	                    |");
 			System.out.println("| 6. Sair                               |");
 			System.out.println("*****************************************");
 
@@ -149,8 +168,7 @@ public class Main {
 				break;
 
 			case "4":
-				
-				
+
 				System.out.println("Introduza Id do cliente");
 				oId = userInput.nextInt();
 				System.out.println("Valor da compra a credito");
@@ -160,7 +178,8 @@ public class Main {
 
 			case "5":
 				// AvancarPeriodo AvancarPeriodo = new AvancarPeriodo();
-				System.out.println("Indisponivel!");
+				finalMes();
+				System.out.println("É final do mês");
 				break;
 
 			case "6":
