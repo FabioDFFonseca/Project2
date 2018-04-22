@@ -10,7 +10,7 @@ public class Main {
 		Cliente uMeuBanku = new Cliente("uMeuBanku", "O");
 		listaClientes.add(uMeuBanku);
 		uMeuBanku.getContaAOrdem().depositar(0);
-		
+
 		Cliente cliente1 = new Cliente("Mark Zuckerberg", "V");
 		listaClientes.add(cliente1);
 		cliente1.getContaAOrdem().depositar(100000);
@@ -38,13 +38,21 @@ public class Main {
 			if (listaClientes.get(i).getTipoConta().equalsIgnoreCase("v")) {
 
 				despesas = 500 - listaClientes.get(i).getCartaoCredito().getSaldoCartaoCredito();
-				
-				System.out.println("despesas  mes " + despesas);
+
+
+				// liquidação do creditos mediante verificação saldo disponivel
+
 				Conta contaDestino = listaClientes.get(0).getContaAOrdem();
-				listaClientes.get(i).getContaAOrdem().transfer(contaDestino, despesas); 
-				listaClientes.get(i).getCartaoCredito().setSaldoCartaoCredito(500);
-				
-				
+
+				if (listaClientes.get(i).getContaAOrdem().getSaldo() >= despesas) {
+					listaClientes.get(i).getContaAOrdem().transfer(contaDestino, despesas);
+					listaClientes.get(i).getCartaoCredito().setSaldoCartaoCredito(500);
+				} else {
+					System.out.println(" Conta sem saldo suficiente !");
+					double saldoDisponivel = listaClientes.get(i).getContaAOrdem().getSaldo();
+					listaClientes.get(i).getContaAOrdem().transfer(contaDestino, saldoDisponivel);
+					listaClientes.get(i).getCartaoCredito().setSaldoCartaoCredito(500 - saldoDisponivel);
+				}
 			}
 		}
 	}
@@ -62,37 +70,52 @@ public class Main {
 		}
 	}
 
-	public static void displayCliente(int id) {
-		StringBuilder decomMove = new StringBuilder();
+	public static void decompMoves(StringBuilder decomMove) {
+
 		String moves;
-
-		
-		System.out.print("Nome do titular  :"+"\t");
-		System.out.print(listaClientes.get(id - 1).getNomeCliente() + '\t' + "    ");
-		System.out.println("Numero da conta   :"+"\t"+id);
-		System.out.println(
-				"Nº. Data      Tipo          Valor       Saldo " );
-	//	System.out.println(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
-		decomMove.append(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
-		int idx=0;
+		int idx = 0;
 		int nxtIdx;
-		int lastIdx =decomMove.lastIndexOf("endOfMove");
+		int lastIdx = decomMove.lastIndexOf("endOfMove");
 
-		// decomposição do objecto movimento no arrayList
-		
-		do{
-			nxtIdx=decomMove.indexOf("endOfMove", idx);
-			moves=decomMove.substring(idx+1, nxtIdx);
+		// decomposição da StringBuidler em SunStrings
+
+		do {
+			nxtIdx = decomMove.indexOf("endOfMove", idx);
+			moves = decomMove.substring(idx + 1, nxtIdx);
 			System.out.println(moves);
-			idx=nxtIdx+10;
-		}
-			while (idx < lastIdx);
-		
-		//System.out.println(+listaClientes.get(id - 1).getContaAOrdem().getSaldo() + '\t' + "    ");
+			idx = nxtIdx + 10;
+		} while (idx < lastIdx);
+
+	}
+
+	public static void displayCliente(int id) {
+
+		StringBuilder decomMove = new StringBuilder();
+
+		System.out.print("Nome do titular  :" + "\t");
+		System.out.print(listaClientes.get(id - 1).getNomeCliente() + '\t' + "    ");
+		System.out.println("Numero da conta   :" + "\t" + id);
+		System.out.println("Nº. Data      Tipo          Valor       Saldo ");
+
+		decomMove.append(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
+		decompMoves(decomMove);
+
+		// movimentos cartão credito
+
 		if (listaClientes.get(id - 1).getTipoConta().equalsIgnoreCase("V")) {
-			System.out.println("movimentos e saldo cartão");
-			System.out.print(listaClientes.get(id - 1).getCartaoCredito().getMovimentosCredito() + " \t" + "    ");
-			System.out.println(" \t" + "    " + listaClientes.get(id - 1).getCartaoCredito().getSaldoCartaoCredito());
+			System.out.println("Movimento do cartão de crédito");
+
+			if (listaClientes.get(id - 1).getCartaoCredito().getMovimentosCredito().size() > 0) {
+
+				StringBuilder decomMoveCredits = new StringBuilder();
+
+				decomMoveCredits.append(listaClientes.get(id - 1).getCartaoCredito().getMovimentosCredito());
+				decompMoves(decomMoveCredits);
+			} else {
+				System.out.println("Cartão de crédito sem movimentos registados");
+				System.out.println(" Saldo disponivel  \t" + "    "
+						+ listaClientes.get(id - 1).getCartaoCredito().getSaldoCartaoCredito());
+			}
 		}
 	}
 
@@ -143,7 +166,6 @@ public class Main {
 					opt = userInput.next();
 					if (opt.equalsIgnoreCase("s")) {
 						displayClientes();
-						System.out.println("Press enter para continuar");
 
 					} else if (opt.equalsIgnoreCase("n")) {
 						System.out.println("Introduza o Id do cliente");
@@ -154,12 +176,10 @@ public class Main {
 					}
 				} while (!opt.equalsIgnoreCase("n") && !opt.equalsIgnoreCase("s"));
 
-				System.out.println("Press enter para continuar");
-
 				break;
 
 			case "3":
-				// Options OptionsCliente = new Options();
+
 				System.out.println("1 - Depositos:");
 				System.out.println("2 - Levantamentos:");
 				System.out.println("3 - Transferencias");

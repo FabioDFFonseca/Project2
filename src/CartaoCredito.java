@@ -17,7 +17,7 @@ public class CartaoCredito {
 	public void compraCredito(double compra) {
 		
 		if(saldoCartaoCredito < compra) {
-			System.out.println("Saldo no Cartão Insuficiente!");
+			System.out.println("o saldo disponivel no cartão é insuficiente!");
 		}else {
 			this.saldoCartaoCredito -= compra;	
 			movimentosCredito.add(new Movimentos(compra, "Cartão crédito",this.saldoCartaoCredito));
