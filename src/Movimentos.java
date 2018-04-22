@@ -2,10 +2,12 @@ import java.time.LocalDate;
 
 public class Movimentos{
 	
+
 	private double valor;
 	private double transfer;
 	LocalDate localDate = LocalDate.now();
 	String tipoDeMov;
+	public static int numMovimento=0;
 	
 	
 	public Movimentos(double deposito, String tipo) {
@@ -13,6 +15,7 @@ public class Movimentos{
 		this.valor = deposito;
 		this.localDate = LocalDate.now();
 		this.tipoDeMov = tipo;
+		numMovimento++;
 		
 	}
 	private double getDeposito() {
@@ -26,7 +29,7 @@ public class Movimentos{
 	}
 	@Override
 	public String toString() {
-		return  tipoDeMov + " de " + valor + " as " + localDate;
+		return numMovimento +" "+ localDate +" "+ tipoDeMov +" "+ valor+"endOfMove" ;
 	}
 	private void setDeposito(double deposito) {
 		this.valor = deposito;

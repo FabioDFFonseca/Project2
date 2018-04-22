@@ -63,13 +63,34 @@ public class Main {
 	}
 
 	public static void displayCliente(int id) {
-		System.out.println("Nome do titular");
-		System.out.println(listaClientes.get(id - 1).getNomeCliente() + '\t' + "    ");
+		StringBuilder decomMove = new StringBuilder();
+		String moves;
+
+		
+		System.out.print("Nome do titular  :"+"\t");
+		System.out.print(listaClientes.get(id - 1).getNomeCliente() + '\t' + "    ");
+		System.out.println("Numero da conta   :"+"\t"+id);
 		System.out.println(
-				"Movimentos do cliente " + "\t" + "\t" + "          Saldo atual " + "\t" + "\t" + "Saldo no Cartão  ");
-		System.out.print(listaClientes.get(id - 1).getContaAOrdem().getMovimentos() + " \t" + "    ");
-		System.out.print(+listaClientes.get(id - 1).getContaAOrdem().getSaldo() + '\t' + "    ");
+				"Nº. Data      Tipo     Valor     Saldo " );
+	//	System.out.println(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
+		decomMove.append(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
+		int idx=0;
+		int nxtIdx;
+		int lastIdx =decomMove.lastIndexOf("endOfMove");
+
+		// decomposição do objecto movimento no arrayList
+		
+		do{
+			nxtIdx=decomMove.indexOf("endOfMove", idx);
+			moves=decomMove.substring(idx+1, nxtIdx);
+			System.out.println(moves);
+			idx=nxtIdx+10;
+		}
+			while (idx < lastIdx);
+		
+		//System.out.println(+listaClientes.get(id - 1).getContaAOrdem().getSaldo() + '\t' + "    ");
 		if (listaClientes.get(id - 1).getTipoConta().equalsIgnoreCase("V")) {
+			System.out.println("movimentos e saldo cartão");
 			System.out.print(listaClientes.get(id - 1).getCartaoCredito().getMovimentosCredito() + " \t" + "    ");
 			System.out.println(" \t" + "    " + listaClientes.get(id - 1).getCartaoCredito().getSaldoCartaoCredito());
 		}

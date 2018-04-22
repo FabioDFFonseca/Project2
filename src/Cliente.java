@@ -10,7 +10,7 @@ public class Cliente {
 	private String tipoConta;
 	private Conta contaAOrdem;
 	private CartaoCredito cartaoCredito;
-	// private ArrayList<Double> saldo = new ArrayList<Double>();
+
 
 	public Conta getContaAOrdem() {
 		return contaAOrdem;
