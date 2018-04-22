@@ -71,7 +71,7 @@ public class Main {
 		System.out.print(listaClientes.get(id - 1).getNomeCliente() + '\t' + "    ");
 		System.out.println("Numero da conta   :"+"\t"+id);
 		System.out.println(
-				"Nº. Data      Tipo     Valor     Saldo " );
+				"Nº. Data      Tipo          Valor       Saldo " );
 	//	System.out.println(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
 		decomMove.append(listaClientes.get(id - 1).getContaAOrdem().getMovimentos());
 		int idx=0;

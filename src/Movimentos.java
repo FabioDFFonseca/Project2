@@ -7,15 +7,16 @@ public class Movimentos{
 	private double transfer;
 	LocalDate localDate = LocalDate.now();
 	String tipoDeMov;
-	public static int numMovimento=0;
+	public int numMovimento=1;
+	public double saldo;
 	
 	
-	public Movimentos(double deposito, String tipo) {
+	public Movimentos(double deposito, String tipo, double saldo) {
 		super();
 		this.valor = deposito;
 		this.localDate = LocalDate.now();
 		this.tipoDeMov = tipo;
-		numMovimento++;
+		this.saldo=saldo;
 		
 	}
 	private double getDeposito() {
@@ -29,7 +30,7 @@ public class Movimentos{
 	}
 	@Override
 	public String toString() {
-		return numMovimento +" "+ localDate +" "+ tipoDeMov +" "+ valor+"endOfMove" ;
+		return numMovimento +" "+ localDate +" "+ tipoDeMov +"      "+ valor+"    "+saldo+"endOfMove" ;
 	}
 	private void setDeposito(double deposito) {
 		this.valor = deposito;

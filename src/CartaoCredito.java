@@ -20,7 +20,7 @@ public class CartaoCredito {
 			System.out.println("Saldo no Cartão Insuficiente!");
 		}else {
 			this.saldoCartaoCredito -= compra;	
-			movimentosCredito.add(new Movimentos(compra, "Cartão crédito"));
+			movimentosCredito.add(new Movimentos(compra, "Cartão crédito",this.saldoCartaoCredito));
 		}	
 	}
 	
