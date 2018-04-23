@@ -152,8 +152,9 @@ public class Main {
 				System.out.println("nome de cliente :" + "tipo de conta: ");
 				nomeCliente = userInput.next();
 				tipoConta = userInput.next();
-				Cliente criarCliente = new Cliente(nomeCliente, tipoConta);
-				listaClientes.add(criarCliente);
+				Cliente novoCliente = new Cliente(nomeCliente, tipoConta);
+				listaClientes.add(novoCliente);
+				novoCliente.getContaAOrdem().depositar(0);
 
 				break;
 
