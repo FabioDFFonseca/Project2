@@ -138,7 +138,7 @@ public class Main {
 			System.out.println("| 2. Consultas clientes                 |");
 			System.out.println("| 3. Operações clientes                 |");
 			System.out.println("| 4. Compras cartão crédito             |");
-			System.out.println("| 5. Final do mês	                    |");
+			System.out.println("| 5. Final do mês                       |");
 			System.out.println("| 6. Sair                               |");
 			System.out.println("*****************************************");
 
@@ -149,9 +149,9 @@ public class Main {
 			switch (readOption) {
 
 			case "1":
-				System.out.println("nome do cliente :");
+				System.out.println("Primeiro nome do cliente :");
 				nomeCliente = userInput.next();
-				System.out.println("apelido do cliente :");
+				System.out.println("Apelido do cliente :");
 				nomeCliente= nomeCliente+" "+userInput.next();
 				System.out.println("introduza tipo de conta: V / O");
 				tipoConta = userInput.next();
