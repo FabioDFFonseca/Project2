@@ -149,8 +149,11 @@ public class Main {
 			switch (readOption) {
 
 			case "1":
-				System.out.println("nome de cliente :" + "tipo de conta: ");
+				System.out.println("nome do cliente :");
 				nomeCliente = userInput.next();
+				System.out.println("apelido do cliente :");
+				nomeCliente= nomeCliente+" "+userInput.next();
+				System.out.println("introduza tipo de conta: V / O");
 				tipoConta = userInput.next();
 				Cliente novoCliente = new Cliente(nomeCliente, tipoConta);
 				listaClientes.add(novoCliente);
