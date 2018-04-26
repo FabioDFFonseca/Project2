@@ -144,17 +144,17 @@ public class Main {
 
 			System.out.print("Escolha uma opção 1 a 6 > ");
 
-			readOption = userInput.next();
+			readOption = userInput.nextLine();
 
 			switch (readOption) {
 
 			case "1":
 				System.out.println("Primeiro nome do cliente :");
-				nomeCliente = userInput.next();
-				System.out.println("Apelido do cliente :");
-				nomeCliente= nomeCliente+" "+userInput.next();
+				nomeCliente = userInput.nextLine();
+//				System.out.println("Apelido do cliente :");
+//				nomeCliente= nomeCliente+" "+userInput.nextLine();
 				System.out.println("introduza tipo de conta: V / O");
-				tipoConta = userInput.next();
+				tipoConta = userInput.nextLine();
 				Cliente novoCliente = new Cliente(nomeCliente, tipoConta);
 				listaClientes.add(novoCliente);
 				novoCliente.getContaAOrdem().depositar(0);
@@ -167,13 +167,15 @@ public class Main {
 				System.out.println("1. Listar todos clientes ?" + "\t" + "S / N");
 
 				do {
-					opt = userInput.next();
+					opt = userInput.nextLine();
 					if (opt.equalsIgnoreCase("s")) {
 						displayClientes();
 
 					} else if (opt.equalsIgnoreCase("n")) {
 						System.out.println("Introduza o Id do cliente");
-						oId = userInput.nextInt();
+						oId =Integer.parseInt(userInput.nextLine());
+//						oId = userInput.nextInt();  // Paulo ja consegui solucionar o problema!!!
+
 						displayCliente(oId);
 					} else {
 						System.out.println("Opção não válida S / N");
@@ -189,24 +191,25 @@ public class Main {
 				System.out.println("3 - Transferencias");
 
 				op = 0;
-				op = userInput.nextInt();
+				op = Integer.parseInt(userInput.nextLine());
+
 				double movimento = 0;
 				double transfer = 0;
 				System.out.println("Introduza Id do cliente");
-				oId = userInput.nextInt();
+				oId = Integer.parseInt(userInput.nextLine());
 				if (op == 1) {
 					System.out.println("Introduza valor a Depositar");
-					movimento = userInput.nextInt();
+					movimento = Integer.parseInt(userInput.nextLine());
 					listaClientes.get(oId - 1).getContaAOrdem().depositar(movimento);
 				} else if (op == 2) {
 					System.out.println("Levantamento");
-					movimento = userInput.nextInt();
+					movimento =Integer.parseInt(userInput.nextLine());
 					listaClientes.get(oId - 1).getContaAOrdem().levantar(movimento);
 				} else {
 					System.out.println("Valor a transferir");
-					movimento = userInput.nextInt();
+					movimento = Integer.parseInt(userInput.nextLine());
 					System.out.println("Conta destino");
-					int idDestino = userInput.nextInt();
+					int idDestino = Integer.parseInt(userInput.nextLine());
 					Conta contaDestino = listaClientes.get(idDestino - 1).getContaAOrdem();
 					listaClientes.get(oId - 1).getContaAOrdem().transfer(contaDestino, movimento);
 				}
@@ -215,9 +218,9 @@ public class Main {
 			case "4":
 
 				System.out.println("Introduza Id do cliente");
-				oId = userInput.nextInt();
+				oId =Integer.parseInt(userInput.nextLine());
 				System.out.println("Valor da compra a credito");
-				double compra = userInput.nextInt();
+				double compra = Integer.parseInt(userInput.nextLine());
 				listaClientes.get(oId - 1).getCartaoCredito().compraCredito(compra);
 				break;
 
